@@ -1,0 +1,23 @@
+version: '3'
+services:
+  nginx:
+    image: nginx:latest
+    container_name: webserver
+    ports:
+      - 8080:80
+    depends_on: 
+      - mysql
+    volumes:
+      - volweb:/usr/share/nginx/html
+
+  mysql:
+    image: mysql:latest
+    container_name: database
+    environment:
+      - MYSQL_ROOT_PASSWORD=abc123
+    volumes:
+      - voldb:/var/lib/mysql
+
+volumes:
+  volweb:
+  voldb:
